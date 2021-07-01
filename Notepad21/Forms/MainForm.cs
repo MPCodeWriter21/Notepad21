@@ -10,6 +10,7 @@ namespace Notepad21
         private bool changesSaved = true;
         private bool CanRedo = false;
         private string RedoText;
+        FindForm findForm = new FindForm();
         public MainForm()
         {
             InitializeComponent();
@@ -162,6 +163,7 @@ namespace Notepad21
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = false;
             if (!changesSaved)
             {
                 DialogResult result = MessageBox.Show($"Do you want to save changes to {GetName()}?", "Notepad21", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -172,11 +174,9 @@ namespace Notepad21
                 else if (result != DialogResult.No)
                     e.Cancel = true;
             }
-        }
-
-        private void txtContent_TextChanged(object sender, EventArgs e)
-        {
-            changesSaved = false;
+            findForm.close = !e.Cancel;
+            if (!e.Cancel)
+                findForm.Dispose();
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -217,6 +217,17 @@ namespace Notepad21
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             txtContent.SelectedText = "";
+        }
+
+        private void findToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            findForm.Owner = this;
+            findForm.Show();
+        }
+
+        private void txtContent_TextChanged_1(object sender, EventArgs e)
+        {
+            changesSaved = false;
         }
     }
 }
