@@ -34,8 +34,8 @@ namespace Notepad21
             this.btnFindNext = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioBtnUp = new System.Windows.Forms.RadioButton();
             this.radioBtnDown = new System.Windows.Forms.RadioButton();
+            this.radioBtnUp = new System.Windows.Forms.RadioButton();
             this.chboxMatchCase = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -88,16 +88,6 @@ namespace Notepad21
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Direction";
             // 
-            // radioBtnUp
-            // 
-            this.radioBtnUp.AutoSize = true;
-            this.radioBtnUp.Location = new System.Drawing.Point(6, 20);
-            this.radioBtnUp.Name = "radioBtnUp";
-            this.radioBtnUp.Size = new System.Drawing.Size(39, 17);
-            this.radioBtnUp.TabIndex = 0;
-            this.radioBtnUp.Text = "&Up";
-            this.radioBtnUp.UseVisualStyleBackColor = true;
-            // 
             // radioBtnDown
             // 
             this.radioBtnDown.AutoSize = true;
@@ -109,6 +99,16 @@ namespace Notepad21
             this.radioBtnDown.TabStop = true;
             this.radioBtnDown.Text = "&Down";
             this.radioBtnDown.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnUp
+            // 
+            this.radioBtnUp.AutoSize = true;
+            this.radioBtnUp.Location = new System.Drawing.Point(6, 20);
+            this.radioBtnUp.Name = "radioBtnUp";
+            this.radioBtnUp.Size = new System.Drawing.Size(39, 17);
+            this.radioBtnUp.TabIndex = 0;
+            this.radioBtnUp.Text = "&Up";
+            this.radioBtnUp.UseVisualStyleBackColor = true;
             // 
             // chboxMatchCase
             // 
@@ -134,7 +134,9 @@ namespace Notepad21
             this.Controls.Add(this.txtToFind);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(372, 141);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(372, 141);
             this.Name = "FindForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

@@ -6,6 +6,7 @@ namespace Notepad21
 {
     public partial class MainForm : Form
     {
+        // Path of opend file
         private string path;
         private bool changesSaved = true;
         private bool CanRedo = false;
