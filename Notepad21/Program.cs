@@ -17,9 +17,9 @@ namespace Notepad21
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (args.Length > 0)
-                    Application.Run(new MainForm(args[0]));
+                    Application.Run(new Forms.MainForm(args[0]));
             else
-                Application.Run(new MainForm());
+                Application.Run(new Forms.MainForm());
         }
     }
 }

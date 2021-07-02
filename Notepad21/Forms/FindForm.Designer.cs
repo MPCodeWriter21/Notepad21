@@ -1,5 +1,5 @@
 ﻿
-namespace Notepad21
+namespace Notepad21.Forms
 {
     partial class FindForm
     {

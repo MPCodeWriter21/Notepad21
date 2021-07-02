@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Notepad21
+namespace Notepad21.Forms
 {
     public partial class FindForm : Form
     {

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 
-namespace Notepad21
+namespace Notepad21.Forms
 {
     public partial class MainForm : Form
     {
@@ -12,6 +12,7 @@ namespace Notepad21
         private bool CanRedo = false;
         private string RedoText;
         FindForm findForm = new FindForm();
+        ReplaceForm replaceForm = new ReplaceForm();
         public MainForm()
         {
             InitializeComponent();
@@ -229,6 +230,12 @@ namespace Notepad21
         private void txtContent_TextChanged_1(object sender, EventArgs e)
         {
             changesSaved = false;
+        }
+
+        private void repalceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            replaceForm.Owner = this;
+            replaceForm.Show();
         }
     }
 }
