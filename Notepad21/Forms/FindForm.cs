@@ -37,6 +37,7 @@ namespace Notepad21.Forms
                 int index = content.Substring(form.txtContent.SelectionStart + form.txtContent.SelectionLength).IndexOf(toFind);
                 if (index == -1)
                 {
+                    MessageBox.Show($"Can't Find '{toFind}'", "Notepad21", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     SystemSounds.Beep.Play();
                     return;
                 }
@@ -47,6 +48,7 @@ namespace Notepad21.Forms
                 int index = content.Substring(0, form.txtContent.SelectionStart).LastIndexOf(toFind);
                 if (index == -1)
                 {
+                    MessageBox.Show($"Can't Find '{toFind}'", "Notepad21", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     SystemSounds.Beep.Play();
                     return;
                 }
