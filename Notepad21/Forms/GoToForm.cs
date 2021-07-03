@@ -31,8 +31,10 @@ namespace Notepad21.Forms
             MainForm form = (MainForm)Owner;
             if (int.Parse(txtLineNumber.Text) <= form.txtContent.Lines.Length)
             {
-                form.txtContent.Select(form.txtContent.GetFirstCharIndexFromLine(int.Parse(txtLineNumber.Text)), 0);
+                form.txtContent.Select(form.txtContent.GetFirstCharIndexFromLine(int.Parse(txtLineNumber.Text) - 1), 0);
                 form.txtContent.ScrollToCaret();
+                form.txtContent.Focus();
+                Hide();
             }
             else
             {
