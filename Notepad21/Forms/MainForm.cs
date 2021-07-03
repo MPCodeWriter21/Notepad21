@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 namespace Notepad21.Forms
 {
@@ -235,6 +236,49 @@ namespace Notepad21.Forms
         private void timeDateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             txtContent.SelectedText = DateTime.Now.ToString();
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            float linesPerPage = 0;
+            float yPosition = 0;
+            int count = 0;
+            float leftMargin = e.MarginBounds.Left;
+            float topMargin = e.MarginBounds.Top;
+            string line = null;
+
+            Font printFont = this.txtContent.Font;
+            SolidBrush myBrush = new SolidBrush(Color.Black);
+            linesPerPage = e.MarginBounds.Height / printFont.GetHeight(e.Graphics);
+            StringReader reader = new StringReader(txtContent.Text);
+
+            while (count < linesPerPage && ((line = reader.ReadLine()) != null))
+            {
+                yPosition = topMargin + (count * printFont.GetHeight(e.Graphics));
+                e.Graphics.DrawString(line, printFont, myBrush, leftMargin, yPosition, new StringFormat());
+                count++;
+            }
+            if (line != null)
+                e.HasMorePages = true;
+            else
+                e.HasMorePages = false;
+            myBrush.Dispose();
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printDialog.AllowSomePages = false;
+
+            printDialog.ShowHelp = true;
+            printDialog.Document = printDocument;
+
+            DialogResult result = printDialog.ShowDialog();
+
+            // If the result is OK then print the document.
+            if (result == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
         }
     }
 }
