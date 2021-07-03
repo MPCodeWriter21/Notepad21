@@ -13,6 +13,7 @@ namespace Notepad21.Forms
         private string RedoText;
         FindForm findForm = new FindForm();
         ReplaceForm replaceForm = new ReplaceForm();
+        GoToForm gotoForm = new GoToForm();
         public MainForm()
         {
             InitializeComponent();
@@ -236,6 +237,17 @@ namespace Notepad21.Forms
         {
             replaceForm.Owner = this;
             replaceForm.Show();
+        }
+
+        private void goToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gotoForm.Owner = this;
+            gotoForm.Show();
+        }
+
+        private void wordWrapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            goToToolStripMenuItem.Enabled = !(txtContent.WordWrap = wordWrapToolStripMenuItem.Checked = !wordWrapToolStripMenuItem.Checked);
         }
     }
 }
