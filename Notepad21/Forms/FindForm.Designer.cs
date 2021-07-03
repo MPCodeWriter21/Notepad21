@@ -140,6 +140,7 @@ namespace Notepad21.Forms
             this.Name = "FindForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Find";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
