@@ -36,6 +36,7 @@ namespace Notepad21.Forms
             {
                 txtContent.Text = File.ReadAllText(fileName);
                 path = fileName;
+                changesSaved = true;
             }
             catch (IOException ex)
             {
@@ -54,16 +55,17 @@ namespace Notepad21.Forms
                     path = saveFD.FileName;
             }
 
-            try
-            {
-                File.WriteAllText(path, txtContent.Text);
-            }
-            catch (IOException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                path = null;
-                Save();
-            }
+            if (path != null)
+                try
+                {
+                    File.WriteAllText(path, txtContent.Text);
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    path = null;
+                    Save();
+                }
         }
 
         private void SaveAs()
