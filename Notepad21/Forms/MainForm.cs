@@ -249,5 +249,10 @@ namespace Notepad21.Forms
         {
             goToToolStripMenuItem.Enabled = !(txtContent.WordWrap = wordWrapToolStripMenuItem.Checked = !wordWrapToolStripMenuItem.Checked);
         }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txtContent.SelectAll();
+        }
     }
 }
