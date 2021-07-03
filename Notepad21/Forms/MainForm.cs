@@ -24,88 +24,9 @@ namespace Notepad21.Forms
             Open(path);
         }
 
-        private void printToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (changesSaved)
-            {
-                path = null;
-                txtContent.Clear();
-            }
-            else
-            {
-                DialogResult result = MessageBox.Show($"Do you want to save changes to {GetName()}?", "Notepad21", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    Save();
-                    path = null;
-                    txtContent.Clear();
-                }
-                else if (result == DialogResult.No)
-                {
-                    path = null;
-                    txtContent.Clear();
-                }
-            }
-        }
-
         private string GetName()
         {
-            if (path == null)
-                return "Untitled";
-            return Path.GetFileName(path);
-        }
-
-        private void Save()
-        {
-            if (path == null)
-            {
-                SaveFileDialog saveFD = new SaveFileDialog();
-                saveFD.Filter = "Text Document|*.txt|All Files|*.*";
-                saveFD.Title = "Save File";
-                if (saveFD.ShowDialog() == DialogResult.OK)
-                {
-                    path = saveFD.FileName;
-                    try
-                    {
-                        File.WriteAllText(path, txtContent.Text);
-                    }
-                    catch (IOException ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        path = null;
-                        Save();
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    File.WriteAllText(path, txtContent.Text);
-                }
-                catch (IOException ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    path = null;
-                    Save();
-                }
-            }
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFD = new OpenFileDialog();
-            openFD.Filter = "Text Document|*.txt|All Files|*.*";
-            openFD.Title = "Choose File";
-            if (openFD.ShowDialog() == DialogResult.OK)
-            {
-                Open(openFD.FileName);
-            }
+            return Path.GetFileName(path == null ? "Untitled" : path);
         }
 
         private void Open(string fileName)
@@ -121,20 +42,26 @@ namespace Notepad21.Forms
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Save();
-        }
-
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Save()
         {
             if (path == null)
             {
-                Save();
+                SaveFileDialog saveFD = new SaveFileDialog();
+                saveFD.Filter = "Text Document|*.txt|All Files|*.*";
+                saveFD.Title = "Save File";
+                if (saveFD.ShowDialog() == DialogResult.OK)
+                    path = saveFD.FileName;
             }
-            else
+
+            try
             {
-                SaveAs();
+                File.WriteAllText(path, txtContent.Text);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                path = null;
+                Save();
             }
         }
 
@@ -145,17 +72,56 @@ namespace Notepad21.Forms
             saveFD.Title = "Save File";
             if (saveFD.ShowDialog() == DialogResult.OK)
             {
+                path = saveFD.FileName;
                 try
                 {
-                    File.WriteAllText(saveFD.FileName, txtContent.Text);
-                    if (path == null)
-                        path = saveFD.FileName;
+                    File.WriteAllText(path, txtContent.Text);
                 }
                 catch (IOException ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!changesSaved)
+            {
+                DialogResult result = MessageBox.Show($"Do you want to save changes to {GetName()}?", "Notepad21", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                    Save();
+
+                else if (result == DialogResult.Cancel)
+                    return;
+            }
+
+            path = null;
+            txtContent.Clear();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFD = new OpenFileDialog();
+            openFD.Filter = "Text Document|*.txt|All Files|*.*";
+            openFD.Title = "Choose File";
+            if (openFD.ShowDialog() == DialogResult.OK)
+            {
+                Open(openFD.FileName);
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (path == null)
+                Save();
+            else
+                SaveAs();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -170,9 +136,7 @@ namespace Notepad21.Forms
             {
                 DialogResult result = MessageBox.Show($"Do you want to save changes to {GetName()}?", "Notepad21", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
-                {
                     Save();
-                }
                 else if (result != DialogResult.No)
                     e.Cancel = true;
             }
