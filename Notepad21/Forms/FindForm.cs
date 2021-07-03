@@ -20,7 +20,7 @@ namespace Notepad21.Forms
             InitializeComponent();
         }
 
-        private void btnFindNext_Click(object sender, EventArgs e)
+        public void btnFindNext_Click(object sender, EventArgs e)
         {
             form = (MainForm)Owner;
             string toFind = txtToFind.Text;
@@ -37,8 +37,8 @@ namespace Notepad21.Forms
                 int index = content.Substring(form.txtContent.SelectionStart + form.txtContent.SelectionLength).IndexOf(toFind);
                 if (index == -1)
                 {
-                    MessageBox.Show($"Can't Find '{toFind}'", "Notepad21", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     SystemSounds.Beep.Play();
+                    MessageBox.Show($"Can't Find '{toFind}'", "Notepad21", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 form.txtContent.SelectionStart = form.txtContent.SelectionStart + index;
@@ -48,8 +48,8 @@ namespace Notepad21.Forms
                 int index = content.Substring(0, form.txtContent.SelectionStart).LastIndexOf(toFind);
                 if (index == -1)
                 {
-                    MessageBox.Show($"Can't Find '{toFind}'", "Notepad21", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     SystemSounds.Beep.Play();
+                    MessageBox.Show($"Can't Find '{toFind}'", "Notepad21", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 form.txtContent.SelectionStart = index;

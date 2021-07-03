@@ -102,8 +102,8 @@ namespace Notepad21.Forms
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtLineNumber;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnGoTo;
+        private System.Windows.Forms.TextBox txtLineNumber;
     }
 }

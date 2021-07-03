@@ -252,8 +252,9 @@ namespace Notepad21.Forms
             // 
             this.findNextToolStripMenuItem.Name = "findNextToolStripMenuItem";
             this.findNextToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.findNextToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.findNextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findNextToolStripMenuItem.Text = "Find Next";
+            this.findNextToolStripMenuItem.Click += new System.EventHandler(this.findNextToolStripMenuItem_Click);
             // 
             // repalceToolStripMenuItem
             // 

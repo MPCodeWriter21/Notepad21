@@ -254,5 +254,16 @@ namespace Notepad21.Forms
         {
             txtContent.SelectAll();
         }
+
+        private void findNextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (findForm.txtToFind.Text == "")
+            {
+                findForm.Owner = this;
+                findForm.Show();
+            }
+            else
+                findForm.btnFindNext_Click(sender, e);
+        }
     }
 }

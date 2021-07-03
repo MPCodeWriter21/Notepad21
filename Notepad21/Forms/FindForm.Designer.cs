@@ -153,12 +153,12 @@ namespace Notepad21.Forms
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtToFind;
-        private System.Windows.Forms.Button btnFindNext;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioBtnDown;
         private System.Windows.Forms.RadioButton radioBtnUp;
         private System.Windows.Forms.CheckBox chboxMatchCase;
+        public System.Windows.Forms.TextBox txtToFind;
+        private System.Windows.Forms.Button btnFindNext;
     }
 }
