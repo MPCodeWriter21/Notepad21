@@ -265,5 +265,10 @@ namespace Notepad21.Forms
             else
                 findForm.btnFindNext_Click(sender, e);
         }
+
+        private void timeDateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txtContent.SelectedText = DateTime.Now.ToString();
+        }
     }
 }

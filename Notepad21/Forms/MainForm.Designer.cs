@@ -289,8 +289,9 @@ namespace Notepad21.Forms
             // 
             this.timeDateToolStripMenuItem.Name = "timeDateToolStripMenuItem";
             this.timeDateToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.timeDateToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.timeDateToolStripMenuItem.Text = "Time Date";
+            this.timeDateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.timeDateToolStripMenuItem.Text = "Date Time";
+            this.timeDateToolStripMenuItem.Click += new System.EventHandler(this.timeDateToolStripMenuItem_Click);
             // 
             // formatToolStripMenuItem
             // 
